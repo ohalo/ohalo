@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>jstest</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery.cookie.js"></script>
+	<script type="text/javascript" src="jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="jquery.jstree.js"></script>
+	<link type="text/css" rel="stylesheet" href="jstree/syntax/!style.css"/>
+	<link type="text/css" rel="stylesheet" href="jstree/!style.css"/>
+	<link type="text/css" rel="stylesheet" href="jstree/themes/default/style.css"/>
+	<script type="text/javascript" src="syntax/!script.js"></script>
+	
+	
+</head>
+
+<body>
+	<h3>Using the data config option</h3>
+<div id="demo1" class="demo"></div>
+<script type="text/javascript" class="source">
+$(function () {
+	$("#demo1").jstree({ 
+		"json_data" : {
+			"data" : [
+				{ 
+					"data" : "A node", 
+					"metadata" : { id : 23 },
+					"children" : [ "Child 1", "A Child 2" ]
+				},
+				{ 
+					"attr" : { "id" : "li.node.id1" }, 
+					"data" : { 
+						"title" : "Long format demo", 
+						"attr" : { "href" : "#" } 
+					} 
+				}
+			],
+			"progressive_render" : true
+
+		},
+		"plugins" : [ "themes", "json_data", "ui" ]
+	}).bind("select_node.jstree", function (e, data) { alert(data.rslt.obj.data("id")); });
+});
+</script>
+	
+
+
+</body>
+
+</html>

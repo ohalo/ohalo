@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--[if IE]>
+<script src="js/html5.js"></script>
+<![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>jquery用户输入表单验证</title>
+<meta name="keywords" content="内容校验，jQuery，表单验证 " />
+<script src="../../scripts/jquery.js" type="text/javascript"></script>
+<script src="../../scripts/jquery.validationEngine-zh.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../scripts/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="../../styles/main.css" type="text/css" />
+<link rel="stylesheet" href="../../styles/validationEngine.jquery.css" type="text/css" />
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$("input").each(function() {
+			$(this).attr("value", $(this).attr("tipholder"));
+		});
+
+		$('input').focus(function() {
+			var title = $(this).attr('tipholder');
+			if ($(this).val() == title) {
+				$(this).val('');
+			}
+		}).blur(function() {
+			var title = $(this).attr('tipholder');
+			if ($(this).val() == '') {
+				$(this).val(title);
+			}
+		});
+
+		$("#reg").validationEngine('attach');
+
+		$("#regSubmit").click(function(check) {
+
+			if ($("#reg").validationEngine('validate')) {
+				var rmailval = $('#mail').val();
+				var rpwdval = $('#pwd').val();
+				var rnameval = $('#fullname').val();
+				$('.webbody').html('恭喜你，注册成功！');
+			}
+
+			check.preventDefault();//此处阻止提交表单  
+		});
+
+	});
+</script>
+</head>
+<body>
+
+	<div id="web">
+		<div id="container">
+			<div class="content">
+				<section class="webbody">
+
+					<div id="reg_title">用户注册</div>
+
+					<form method="post" id="reg" action="http://www.ablanxue.com">
+						<p>
+							<input class="email formtip validate[required,custom[email]]"
+								id="mail" type="text" tipholder="电子邮件" />
+						</p>
+
+						<p>
+							<input
+								class="name formtip validate[required,custom[onlyNumberSp]]"
+								id="fullname" type="text" tipholder="名称" />
+						</p>
+
+						<p>
+							<input class="pwd formtip validate[required]" id="pwd"
+								type="password" tipholder="" />
+						</p>
+
+						<p>
+							<input class="submit" id="regSubmit" type="image" value="注册"
+								src="../../images/reg.png">
+						</p>
+						<p id="mail-tip"></p>
+					</form>
+				</section>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

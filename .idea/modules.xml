@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ohalo.iml" filepath="$PROJECT_DIR$/ohalo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ohalo.app/ohalo.app.iml" filepath="$PROJECT_DIR$/ohalo.app/ohalo.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ohalo.article/ohalo.article.iml" filepath="$PROJECT_DIR$/ohalo.article/ohalo.article.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ohalo.base/ohalo.base.iml" filepath="$PROJECT_DIR$/ohalo.base/ohalo.base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ohalo.basic/ohalo.basic.iml" filepath="$PROJECT_DIR$/ohalo.basic/ohalo.basic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ohalo.company/ohalo.company.iml" filepath="$PROJECT_DIR$/ohalo.company/ohalo.company.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ohalo.log/ohalo.log.iml" filepath="$PROJECT_DIR$/ohalo.log/ohalo.log.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ohalo.other/ohalo.other.iml" filepath="$PROJECT_DIR$/ohalo.other/ohalo.other.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ohalo.pomelo/ohalo.pomelo.iml" filepath="$PROJECT_DIR$/ohalo.pomelo/ohalo.pomelo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ohalo.resource/ohalo.resource.iml" filepath="$PROJECT_DIR$/ohalo.resource/ohalo.resource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ohalo.stock/ohalo.stock.iml" filepath="$PROJECT_DIR$/ohalo.stock/ohalo.stock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ohalo.web/ohalo.web.iml" filepath="$PROJECT_DIR$/ohalo.web/ohalo.web.iml" />
+    </modules>
+  </component>
+</project>

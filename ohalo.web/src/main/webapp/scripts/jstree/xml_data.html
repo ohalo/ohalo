@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>jstest</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery.cookie.js"></script>
+	<script type="text/javascript" src="jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="jquery.jstree.js"></script>
+	<link type="text/css" rel="stylesheet" href="jstree/syntax/!style.css"/>
+	<link type="text/css" rel="stylesheet" href="jstree/!style.css"/>
+	<link type="text/css" rel="stylesheet" href="jstree/themes/default/style.css"/>
+	<script type="text/javascript" src="syntax/!script.js"></script>
+	
+	
+</head>
+
+<body>
+	<h3>Using the data config option (flat)</h3>
+<div id="demo1" class="demo"></div>
+<script type="text/javascript" class="source">
+$(function () {
+	$("#demo1").jstree({ 
+		"xml_data" : {
+			"data" : "" + 
+"<root>" + 
+	"<item id='node_1'>" + 
+		"<content><name>Root node 1</name></content>" + 
+	"</item>" + 
+	"<item>" + 
+		"<content><name>Root node 2</name></content>" + 
+	"</item>" + 
+	"<item parent_id='node_1'>" + 
+		"<content><name>Child node</name></content>" + 
+	"</item>" + 
+"</root>"
+		},
+		"plugins" : [ "themes", "xml_data" ]
+	});
+});
+</script>
+	
+
+
+</body>
+
+</html>

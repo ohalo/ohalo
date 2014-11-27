@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title>jstest</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery.cookie.js"></script>
+	<script type="text/javascript" src="jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="jquery.jstree.js"></script>
+	<link type="text/css" rel="stylesheet" href="jstree/syntax/!style.css"/>
+	<link type="text/css" rel="stylesheet" href="jstree/!style.css"/>
+	<link type="text/css" rel="stylesheet" href="jstree/themes/default/style.css"/>
+	<script type="text/javascript" src="syntax/!script.js"></script>
+	
+	
+</head>
+
+<body>
+	<div id="demo2" class="demo"></div>
+	
+
+
+</body>
+
+<script type="text/javascript" class="source">
+		$(function () {
+
+			$("#demo2").jstree({ 
+
+				"core" : { "initially_open" : [ "root" ] },
+
+				"html_data" : {
+
+					"data" : "<li id='root'><a href='#'>Root node</a><ul><li><a href='#'>Child node</a></li></ul></li>"
+
+				},
+
+				"plugins" : [ "themes", "html_data" ]
+
+			});
+
+		});
+
+
+</script>
+</html>

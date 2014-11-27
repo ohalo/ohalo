@@ -1,0 +1,135 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;}
+#l-map{height:100%;width:78%;float:left;border-right:2px solid #bcbcbc;}
+#r-result{height:100%;width:20%;float:left;}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=�����Կ"></script>
+<title>�Զ��幫�����˵���ݽӿ�</title>
+</head>
+<body>
+<div id="l-map"></div>
+<div id="r-result"></div>
+</body>
+</html>
+<script type="text/javascript">
+
+// �ٶȵ�ͼAPI����
+var map = new BMap.Map("l-map");            // ����Mapʵ��
+map.centerAndZoom(new BMap.Point(116.404, 39.915), 12);
+
+var transit = new BMap.TransitRoute("������");
+transit.setSearchCompleteCallback(function(results){
+    if (transit.getStatus() == BMAP_STATUS_SUCCESS){
+        for (var index = 0; index < results.getNumPlans(); index++){
+            var showElement = document.createElement("div");
+            var callDLFunc = drawLine(map,results,index,showElement);
+            showElement.style.lineHeight = "20px";
+            showElement.onclick=callDLFunc;
+            showElement.innerHTML = (index + 1) + ". " + results.getPlan(index).getDescription();
+            document.getElementById("r-result").appendChild(showElement);
+            if(index == 0){showElement.onclick();}
+        }
+    }
+})
+transit.search("κ����", "�ٶȴ���");
+var lastSetBackObj = null;
+function drawLine(aMap,results,index,obj){
+    return function(){
+        var opacity = 0.45;
+        var planObj = results.getPlan(index);
+        var bounds = new Array();
+        var addMarkerFun = function(point,imgType,index,title){
+            var url;
+            var width;
+            var height
+            var myIcon;
+            // imgType:1�ĳ��ϣ�Ϊ�����յ��ͼ��2�ĳ���Ϊ��̵�ͼ��
+            if(imgType == 1){
+                url = "http://map.baidu.com/image/dest_markers.png";
+                width = 42;
+                height = 34;
+                myIcon = new BMap.Icon(url,new BMap.Size(width, height),{offset: new BMap.Size(14, 32),imageOffset: new BMap.Size(0, 0 - index * height)});
+            }else{
+                url = "http://map.baidu.com/image/trans_icons.png";
+                width = 22;
+                height = 25;
+                var d = 25;
+                var cha = 0;
+                var jia = 0
+                if(index == 2){
+                    d = 21;
+                    cha = 5;
+                    jia = 1;
+                }
+                myIcon = new BMap.Icon(url,new BMap.Size(width, d),{offset: new BMap.Size(10, (11 + jia)),imageOffset: new BMap.Size(0, 0 - index * height - cha)});
+            }
+
+            var marker = new BMap.Marker(point, {icon: myIcon});
+            if(title != null && title != ""){
+                marker.setTitle(title);
+            }
+            // �����յ����������
+            if(imgType == 1){
+                marker.setTop(true);
+            }
+            aMap.addOverlay(marker);
+        }
+        var addPoints = function(points){
+            for(var i = 0; i < points.length; i++){
+                bounds.push(points[i]);
+            }
+            
+        }
+
+        // ��ո�����
+        aMap.clearOverlays();
+
+        // ���Ƽݳ�������·
+        for (var i = 0; i < planObj.getNumRoutes(); i ++){
+            var route = planObj.getRoute(i);
+            if (route.getDistance(false) > 0){
+                // ������·�п���Ϊ0
+                aMap.addOverlay(new BMap.Polyline(route.getPath(), {strokeStyle:"dashed",strokeColor: "#30a208",strokeOpacity:0.75,strokeWeight:4,enableMassClear:true}));
+            }
+        }
+        // ���ƹ�����·
+        for (i = 0; i < planObj.getNumLines(); i ++){
+            var line = planObj.getLine(i);
+            addPoints(line.getPath());
+            // ����
+            if(line.type == BMAP_LINE_TYPE_BUS){
+                // �ϳ�
+                addMarkerFun(line.getGetOnStop().point,2,2,line.getGetOnStop().title);
+                // �³�
+                addMarkerFun(line.getGetOffStop().point,2,2,line.getGetOffStop().title);
+                
+                // ����
+            }else if(line.type == BMAP_LINE_TYPE_SUBWAY){
+                // �ϳ�
+                addMarkerFun(line.getGetOnStop().point,2,3,line.getGetOnStop().title);
+                // �³�
+                addMarkerFun(line.getGetOffStop().point,2,3,line.getGetOffStop().title);
+            }
+            aMap.addOverlay(new BMap.Polyline(line.getPath(), {strokeColor: "#0030ff",strokeOpacity:opacity,strokeWeight:6,enableMassClear:true}));
+        }
+
+        aMap.setViewport(bounds);
+
+        // �յ�
+        addMarkerFun(results.getEnd().point,1,1);
+        // ��ʼ��
+        addMarkerFun(results.getStart().point,1,0);
+        
+        // �������ֱ���ɫ
+        if(lastSetBackObj != null){
+            lastSetBackObj.style.backgroundColor = "#fff";
+        }
+        obj.style.backgroundColor = "#f0f0f0";
+        lastSetBackObj = obj;
+    }
+}
+</script>

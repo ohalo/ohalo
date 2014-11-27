@@ -1,0 +1,36 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/context  
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+          http://www.springframework.org/schema/data/mongo  
+          http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd  
+          http://www.springframework.org/schema/beans  
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<context:property-placeholder location="classpath*:spring-config.properties" />
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongoDbFactory">
+			<bean class="org.springframework.data.mongodb.core.SimpleMongoDbFactory">
+				<constructor-arg name="uri" ref="mongoURI" />
+			</bean>
+		</constructor-arg>
+
+	</bean>
+	<bean id="mongoURI" class="com.mongodb.MongoURI">
+		<constructor-arg name="uri" value="${mongo.uri}" />
+	</bean>
+
+	<bean id="haloDb" class="org.ohalo.db.impl.MongoHaloDBImpl">
+		<property name="mongoTemplate" ref="mongoTemplate"></property>
+	</bean>
+
+	<bean id="ztagDb" class="org.ohalo.favorite.db.ZTagDb" parent="haloDb">
+		<property name="collectionName" value="tagEntity"></property>
+	</bean>
+	<bean id="zcontentDb" class="org.ohalo.favorite.db.ZContentDb"
+		parent="haloDb">
+		<property name="collectionName" value="contentEntity"></property>
+	</bean>
+
+</beans>  

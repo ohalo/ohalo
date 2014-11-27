@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="ohalo.app" />
+        <module name="ohalo.article" />
+        <module name="ohalo.base" />
+        <module name="ohalo.basic" />
+        <module name="ohalo.company" />
+        <module name="ohalo.log" />
+        <module name="ohalo.other" />
+        <module name="ohalo.pomelo" />
+        <module name="ohalo.resource" />
+        <module name="ohalo.stock" />
+        <module name="ohalo.web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ohalo.app" target="1.6" />
+      <module name="ohalo.article" target="1.6" />
+      <module name="ohalo.base" target="1.6" />
+      <module name="ohalo.basic" target="1.6" />
+      <module name="ohalo.company" target="1.6" />
+      <module name="ohalo.log" target="1.6" />
+      <module name="ohalo.other" target="1.6" />
+      <module name="ohalo.pomelo" target="1.6" />
+      <module name="ohalo.resource" target="1.6" />
+      <module name="ohalo.stock" target="1.6" />
+      <module name="ohalo.web" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

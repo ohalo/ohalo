@@ -1,0 +1,67 @@
+<html>
+<head>
+	<title>jstest</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery.cookie.js"></script>
+	<script type="text/javascript" src="jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="jquery.jstree.js"></script>
+	<link type="text/css" rel="stylesheet" href="jstree/syntax/!style.css"/>
+	<link type="text/css" rel="stylesheet" href="jstree/!style.css"/>
+	<link type="text/css" rel="stylesheet" href="jstree/themes/default/style.css"/>
+	<link type="text/css" rel="stylesheet" href="jstree/themes/apple/style.css"/>
+	<script type="text/javascript" src="syntax/!script.js"></script>
+	
+	
+</head>
+
+<body>
+	<h3>Using the themes plugin</h3>
+	<input type="button" class="button" value="toggle_dots" id="toggle_dots" style="float:left;" />
+	<input type="button" class="button" value="toggle_icons" id="toggle_icons" style="float:left;" />
+	<input type="button" class="button" value="set_theme1" id="set_theme1" style="float:left;" />
+	<input type="button" class="button" value="set_theme2" id="set_theme2" style="" />
+	<div id="demo1" class="demo">
+		<ul>
+			<li id="phtml_1">
+				<a href="#">Root node 1</a>
+				<ul>
+					<li id="phtml_2">
+						<a href="#">Child node 1</a>
+					</li>
+					<li id="phtml_3">
+						<a href="#">Child node 2</a>
+					</li>
+				</ul>
+			</li>
+			<li id="phtml_4">
+				<a href="#">Root node 2</a>
+			</li>
+		</ul>
+	</div>
+<script type="text/javascript" class="source">
+$(function () {
+	$("#toggle_dots, #toggle_icons").click(function () { 
+		$("#demo1").jstree(this.value);
+	});
+	$("#set_theme1").click(function () { 
+		$("#demo1").jstree("set_theme","apple");
+	});
+	$("#set_theme2").click(function () { 
+		$("#demo1").jstree("set_theme","default");
+	});
+	$("#demo1").jstree({ 
+		"themes" : {
+			"theme" : "default",
+			"dots" : false,
+			"icons" : true
+		},
+		"plugins" : [ "themes", "html_data" ]
+	});
+});
+</script>
+	
+
+
+</body>
+
+</html>

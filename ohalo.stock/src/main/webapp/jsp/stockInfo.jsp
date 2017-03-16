@@ -12,7 +12,7 @@
 	function domain() {
 		document.getElementById("myForm").submit()
 	}
-	//setInterval("domain()", 30000);
+	setInterval("domain()", 30000);
 	
 	function showImg(stockCode){
 		document.getElementById(stockCode).style.display='block';

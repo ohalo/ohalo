@@ -108,7 +108,7 @@ public class StockOprInFile {
 		insertStock(stcoks);
 	}
 
-	@SuppressWarnings({ "resource", "hiding" })
+	@SuppressWarnings({ "hiding" })
 	public <T> List<T> queryAll(Class<T> clazz) {
 		List<T> cstocks = new ArrayList<T>();
 		BufferedReader br = null;
@@ -132,7 +132,6 @@ public class StockOprInFile {
 		return cstocks;
 	}
 
-	@SuppressWarnings("resource")
 	public List<CompanyStock> queryAllStock() {
 		List<CompanyStock> cstocks = new ArrayList<CompanyStock>();
 		BufferedReader br = null;

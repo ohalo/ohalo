@@ -56,7 +56,6 @@ public class OprFile<T> {
 		}
 	}
 
-	@SuppressWarnings("resource")
 	public List<T> queryAll(Class<T> clazz) {
 		List<T> cstocks = new ArrayList<T>();
 		BufferedReader br = null;
